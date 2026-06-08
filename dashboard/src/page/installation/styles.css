@@ -1,0 +1,99 @@
+.install {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.install p {
+    line-height: 1.4;
+    color: #29292f;
+}
+
+.install p span {
+    font-family: monospace;
+    color: #569cd6;
+}
+
+.code {
+    margin-top: 10px;
+    position: relative;
+}
+
+.codes {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.code-box {
+    padding: 1rem;
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre;
+    color: #d4d4d4;
+    background-color: #121316;
+    border-radius: 20px;
+    overflow-x: auto;
+}
+
+.install .symbol-1 {
+    color: #747985;
+}
+
+.install .symbol-2 {
+    color: #e3e4e8;
+}
+
+.install .symbol-3 {
+    color: #e29a7a;
+}
+
+.install .color-1 {
+    color: #4fa5e8;
+}
+
+.install .color-2 {
+    color: #a3e3ff;
+}
+
+.install .color-3 {
+    color: #e29a7a;
+}
+
+.install .color-3.link {
+    text-decoration: underline;
+}
+
+.install .color-4 {
+    color: #cccccc;
+}
+
+.install .comment {
+    color: #6a9955;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-family: var(--inter-font);
+    font-size: 14px;
+    text-decoration: underline;
+    color: #ffffff;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+@media (width >=1280px) {
+    .code {
+        width: calc(50% - 8px);
+    }
+
+    .codes {
+        flex-direction: row;
+    }
+}

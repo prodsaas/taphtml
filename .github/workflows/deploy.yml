@@ -1,0 +1,129 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Detect changed paths
+        id: changes
+        uses: dorny/paths-filter@v4
+        with:
+          filters: |
+            api:
+              - 'api/**'
+            dashboard:
+              - 'dashboard/**'
+            landing:
+              - 'landing/**'
+            widget:
+              - 'widget/**'
+
+      - name: Setup SSH
+        if: |
+          steps.changes.outputs.api == 'true' ||
+          steps.changes.outputs.dashboard == 'true' ||
+          steps.changes.outputs.landing == 'true' ||
+          steps.changes.outputs.widget == 'true'
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy api
+        if: steps.changes.outputs.api == 'true'
+        run: |
+          rsync -avz --delete \
+            --exclude=".env" \
+            --exclude="node_modules" \
+            --exclude="public/uploads/" \
+            api/ \
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/root/taphtml/api/
+
+      - name: Install api dependencies & restart PM2
+        if: steps.changes.outputs.api == 'true'
+        run: |
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+            cd /root/taphtml/api
+            npm install --omit=dev
+
+            if pm2 describe taphtml > /dev/null 2>&1; then
+              pm2 restart taphtml
+            else
+              pm2 start npm --name "taphtml" -- start
+            fi
+
+            pm2 save
+          EOF
+
+      - name: Setup Node.js (dashboard)
+        if: steps.changes.outputs.dashboard == 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install dashboard dependencies
+        if: steps.changes.outputs.dashboard == 'true'
+        working-directory: dashboard
+        run: npm ci
+
+      - name: Build dashboard
+        if: steps.changes.outputs.dashboard == 'true'
+        working-directory: dashboard
+        env:
+          VITE_SERVER_URL: ${{ secrets.VITE_SERVER_URL }}
+          VITE_WIDGET_URL: ${{ secrets.VITE_WIDGET_URL }}
+          VITE_VAPID_PUBLIC_KEY: ${{ secrets.VITE_VAPID_PUBLIC_KEY }}
+          VITE_TELEGRAM_BOT_USERNAME: ${{ secrets.VITE_TELEGRAM_BOT_USERNAME }}
+        run: npm run build
+
+      - name: Deploy dashboard
+        if: steps.changes.outputs.dashboard == 'true'
+        run: |
+          rsync -avz --delete \
+            dashboard/dist/ \
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/taphtml/dashboard/
+
+      - name: Deploy landing
+        if: steps.changes.outputs.landing == 'true'
+        run: |
+          rsync -avz --delete \
+            landing/ \
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/taphtml/landing/
+
+      - name: Setup Node.js (widget)
+        if: steps.changes.outputs.widget == 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install widget dependencies
+        if: steps.changes.outputs.widget == 'true'
+        working-directory: widget
+        run: npm ci
+
+      - name: Build widget
+        if: steps.changes.outputs.widget == 'true'
+        working-directory: widget
+        env:
+          VITE_SERVER_URL: ${{ secrets.VITE_SERVER_URL }}
+        run: npm run build
+
+      - name: Deploy widget
+        if: steps.changes.outputs.widget == 'true'
+        run: |
+          rsync -avz --delete \
+            widget/dist/ \
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/taphtml/widget/

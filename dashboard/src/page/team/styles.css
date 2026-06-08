@@ -1,0 +1,129 @@
+.team {
+    margin-bottom: 1rem;
+}
+
+.team .search {
+    margin-bottom: 1rem;
+}
+
+.team-box {
+    border: 1px solid #f3f4f6;
+    border-radius: 20px;
+    overflow-x: auto;
+    overscroll-behavior-x: none;
+}
+
+.team-box table {
+    min-width: 700px;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.team-box thead {
+    background-color: #f3f4f6;
+}
+
+.team-box th {
+    padding: 12px 0 12px 18px;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    color: #29292f;
+}
+
+.team-box th:nth-child(1) {
+    width: 25%;
+}
+
+.team-box th:nth-child(2) {
+    width: 35%;
+}
+
+.team-box th:nth-child(3) {
+    width: 15%;
+}
+
+.team-box th:nth-child(4) {
+    width: 15%;
+}
+
+.team-box th:nth-child(5) {
+    width: 15%;
+}
+
+.team-box tbody tr {
+    font-size: 15px;
+    color: #29292f;
+    border-top: 1px solid #f3f4f6;
+}
+
+.team-box td {
+    padding: 12px 0 12px 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.team-box td .skeleton {
+    width: 50px;
+    height: 18.5px;
+}
+
+.team-box td:nth-child(1) .skeleton {
+    width: 100px;
+}
+
+.team-box td:nth-child(2) .skeleton {
+    width: 200px;
+}
+
+.team-box td:nth-child(5) {
+    padding: 12px 18px 12px 0;
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+}
+
+.invite-btn,
+.team-box td:nth-child(5) button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--inter-font);
+    font-size: 16px;
+    text-decoration: underline;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.team-box td:nth-child(5) button:first-child {
+    width: 18px;
+    height: 18px;
+    background: var(--edit-icon) no-repeat center / contain;
+}
+
+.team-box td:nth-child(5) button:last-child {
+    width: 18px;
+    height: 18px;
+    background: var(--delete-icon) no-repeat center / contain;
+}
+
+@media (width >=768px) {
+    .team .search {
+        max-width: calc(300px - 2rem);
+    }
+}
+
+@media (width >=1280px) {
+    .team .search {
+        max-width: calc(400px - 2rem);
+    }
+}
+
+@media (width >=1536px) {
+    .team .search {
+        max-width: calc(425px - 2rem);
+    }
+}

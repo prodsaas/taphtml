@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "TapHTML",
+    "version": "1.0.5",
+    "description": "TapHTML Extension to manage chats and messages.",
+    "host_permissions": [
+        "https://api.taphtml.com/*"
+    ],
+    "sidebar_action": {
+        "default_panel": "index.html",
+        "default_icon": "icon.png"
+    },
+    "action": {
+        "default_icon": "icon.png"
+    },
+    "icons": {
+        "128": "icon.png"
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "taphtml@shubhamlal",
+            "strict_min_version": "140.0",
+            "data_collection_permissions": {
+                "required": [
+                    "none"
+                ]
+            }
+        }
+    }
+}

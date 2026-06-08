@@ -1,0 +1,107 @@
+.login {
+    padding: 1rem 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login h1 {
+    margin-bottom: 4px;
+    font-size: 22px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.login h2 {
+    font-size: 15px;
+    font-weight: 400;
+    text-align: center;
+    color: #40566d;
+}
+
+.login-or {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.login-or div {
+    width: 100%;
+    height: 1px;
+    background-color: #e2e8f0;
+}
+
+.login-or p {
+    font-size: 14px;
+    color: #64748b;
+}
+
+.login input {
+    padding: 10px;
+    width: 100%;
+    font-family: var(--font);
+    font-size: 15px;
+    color: #000000;
+    background-color: transparent;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    outline: 0;
+}
+
+.login-btn {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font);
+    font-size: 15px;
+    color: #ffffff;
+    background: linear-gradient(to bottom, var(--secondary-color), var(--primary-color));
+    border: 1px solid #9e25ef;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.login-btn.google {
+    gap: 8px;
+    color: #29292f;
+    background: linear-gradient(to bottom, #ffffff, #f3f4f6);
+    border: 1px solid #d9d9d9;
+}
+
+.login-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.login-btn svg {
+    width: 15px;
+    height: 15px;
+}
+
+.login-error {
+    font-size: 15px;
+    text-align: center;
+    color: #e11d48;
+}
+
+.extras {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.extras button {
+    width: fit-content;
+    font-family: var(--font);
+    font-size: 15px;
+    color: #29292f;
+    text-decoration: underline;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}

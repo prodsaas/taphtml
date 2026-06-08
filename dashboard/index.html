@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Dashboard</title>
+  <meta name="description" content="Manage chats, teams, widget customization with notification alerts.">
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://dashboard.taphtml.com/">
+
+  <meta property="og:title" content="Dashboard">
+  <meta property="og:site_name" content="TapHTML">
+  <meta property="og:description" content="Manage chats, teams, widget customization with notification alerts.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dashboard.taphtml.com/">
+  <meta property="og:image" content="https://dashboard.taphtml.com/logo/banner.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dashboard" />
+  <meta name="twitter:description" content="Manage chats, teams, widget customization with notification alerts." />
+  <meta name="twitter:image" content="https://dashboard.taphtml.com/logo/banner.png" />
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/src/app.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+
+  <script>
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      window.deferredInstallPrompt = e;
+    });
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("/service-worker.js"));
+    }
+  </script>
+
+  <script>window.onscroll = () => document.body.classList.toggle('scrolled', window.scrollY > 20)</script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+.loader {
+    margin-top: -40px;
+    width: 100%;
+    height: 100svh;
+    display: grid;
+    place-content: center;
+}
+
+.dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    animation: wave 1.2s ease-in-out infinite;
+}
+
+@keyframes wave {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+    }
+
+    30% {
+        transform: translateY(-6px);
+    }
+}
+
+.dot-1 {
+    background: var(--tertiary-color);
+    animation-delay: 0s;
+}
+
+.dot-2 {
+    background: var(--secondary-color);
+    animation-delay: 0.2s;
+}
+
+.dot-3 {
+    background: var(--primary-color);
+    animation-delay: 0.4s;
+}
+
+.progress {
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.progress div {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--tertiary-color));
+    background-size: 200% 100%;
+    transform-origin: left;
+    animation: grow 0.25s cubic-bezier(0.1, 0.9, 0.2, 1) forwards, shimmer 0.8s linear infinite;
+}
+
+@keyframes grow {
+    0% {
+        transform: scaleX(0.3);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.spinner {
+    width: 15px;
+    aspect-ratio: 1;
+    display: grid;
+    border-radius: 50%;
+    background:
+        linear-gradient(0deg, rgb(0 0 0/50%) 30%, #0000 0 70%, rgb(0 0 0/100%) 0) 50%/8% 100%,
+        linear-gradient(90deg, rgb(0 0 0/25%) 30%, #0000 0 70%, rgb(0 0 0/75%) 0) 50%/100% 8%;
+    background-repeat: no-repeat;
+    animation: spin 1s infinite steps(12);
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(1turn)
+    }
+}
+
+.spinner::before,
+.spinner::after {
+    content: "";
+    grid-area: 1/1;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0.915;
+    transform: rotate(30deg);
+}
+
+.spinner::after {
+    opacity: 0.83;
+    transform: rotate(60deg);
+}
+
+.skeleton {
+    display: block;
+    background-color: #f2f2f2;
+    background-image: linear-gradient(90deg, #f2f2f2 0%, #e6e6e6 20%, #f2f2f2 40%, #f2f2f2 100%);
+    background-size: 200% 100%;
+    border-radius: 20px;
+    animation: shimmer 1.5s infinite ease-in-out;
+}
+
+@media (width >=1024px) {
+    .loader {
+        margin-top: 0;
+    }
+
+    .progress {
+        left: 16rem;
+    }
+}

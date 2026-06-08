@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TapHTML - Free Open Source Live Chat Widget for Websites</title>
+    <meta name="description"
+        content="Embed fully customizable widget and manage chats, teams, and notifications from dashboard. Chrome and Firefox extensions are also available.">
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href="https://taphtml.com/" />
+
+    <meta property="og:title" content="TapHTML - Free Open Source Live Chat Widget for Websites">
+    <meta property="og:site_name" content="TapHTML">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://taphtml.com/" />
+    <meta property="og:description"
+        content="Embed fully customizable widget and manage chats, teams, and notifications from dashboard. Chrome and Firefox extensions are also available.">
+    <meta property="og:image" content="https://taphtml.com/images/banner.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TapHTML - Free Open Source Live Chat Widget for Websites" />
+    <meta name="twitter:description"
+        content="Embed fully customizable widget and manage chats, teams, and notifications from dashboard. Chrome and Firefox extensions are also available." />
+    <meta name="twitter:image" content="https://taphtml.com/images/banner.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/widget.css">
+
+    <link rel="prefetch" href="https://dashboard.taphtml.com/">
+    <link rel="preconnect" href="https://api.taphtml.com" crossorigin>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "TapHTML",
+      "url": "https://taphtml.com"
+    }
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <div></div>
+                <p>Tap<span>HTML</span></p>
+            </a>
+            <div class="nav-links">
+                <a href="https://github.com/prodsaas/taphtml" target="_blank" rel="noopener noreferrer">
+                    <div class="github"></div>
+                    <span id="star"></span>
+                </a>
+                <a href="https://dashboard.taphtml.com">Dashboard</a>
+            </div>
+        </nav>
+    </header>
+    <script>
+        window.onscroll = () => document.body.classList.toggle('scrolled', window.scrollY > 20);
+
+        (async () => {
+            const el = document.getElementById('star');
+            const stored = sessionStorage.getItem('stars');
+
+            if (stored) el.textContent = stored;
+            else try {
+                const { stargazers_count } = await (await fetch("https://api.github.com/repos/prodsaas/taphtml")).json();
+                if (stargazers_count) {
+                    el.textContent = stargazers_count;
+                    sessionStorage.setItem('stars', stargazers_count);
+                }
+            } catch { }
+        })();
+    </script>
+
+    <main>
+        <div class="hero">
+            <h1>Customer communication <br> platform <br> powered by <br> live chat widget</h1>
+            <p>Embed fully customizable widget on your <br> website and <br> manage chats, teams, and <br>
+                notifications from your dashboard.</p>
+            <a class="cta" href="https://dashboard.taphtml.com">
+                <div class="info">Get your free widget</div>
+            </a>
+            <div class="policies">
+                <a href="policy/terms.html">Terms of Service</a>
+                <span></span>
+                <a href="policy/privacy.html">Privacy Policy</a>
+            </div>
+            <div class="extensions">
+                <a href="https://chromewebstore.google.com/detail/igaicifkgdcchcdopefiebgdmkehbfbe">
+                    <div class="chrome"></div>
+                    <div class="browser">
+                        <span>Available in the</span>
+                        <span>Chrome Web Store</span>
+                    </div>
+                </a>
+                <a href="https://addons.mozilla.org/en-US/firefox/addon/taphtml/">
+                    <div class="firefox"></div>
+                    <div class="browser">
+                        <span>Available in the</span>
+                        <span>Firefox Add-ons</span>
+                    </div>
+                </a>
+            </div>
+            <img class="globe" src="images/globe.svg" alt="" fetchpriority="high">
+        </div>
+
+        <div class="install">
+            <h2>Go live under <span>60 seconds</span></h2>
+            <h3>No complex steps or deep configuration. Just simple web standards.</h3>
+            <div class="editor">
+                <div class="editor-titlebar">
+                    <div class="editor-tab">index.html</div>
+                </div>
+                <div class="editor-layout">
+                    <div class="editor-line">
+                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+                    </div>
+                    <pre class="editor-code"><code><span class="symbol-1">&lt;</span><span class="symbol-1">!</span><span class="color-1">DOCTYPE</span> <span class="color-2">html</span><span class="symbol-1">&gt;</span>
+<span class="symbol-1">&lt;</span><span class="color-1">html</span> <span class="color-2">lang</span><span class="symbol-2">=</span><span class="symbol-3"><span class="color-3">"en"</span></span><span class="symbol-1">&gt;</span><br />
+<span class="symbol-1">&lt;</span><span class="color-1">head</span><span class="symbol-1">&gt;</span>
+    <span class="symbol-1">&lt;</span><span class="color-1">script</span>
+        <span class="color-2">async</span>
+        <span class="color-2">type</span><span class="symbol-2">=</span><span class="symbol-3">"</span><span class="color-3">module</span><span class="symbol-3">"</span>
+        <span class="color-2">src</span><span class="symbol-2">=</span><span class="symbol-3">"</span><span class="color-3 link">https://widget.taphtml.com</span><span class="symbol-3">"</span>
+        <span class="color-2">data-id</span><span class="symbol-2">=</span><span class="symbol-3">"</span><span class="color-3">YOUR WIDGET ID</span><span class="symbol-3">"</span>
+    <span class="symbol-1">&gt;</span><span class="symbol-1">&lt;/</span><span class="color-1">script</span><span class="symbol-1">&gt;</span>
+<span class="symbol-1">&lt;/</span><span class="color-1">head</span><span class="symbol-1">&gt;</span><br />
+<span class="symbol-1">&lt;/</span><span class="color-1">html</span><span class="symbol-1">&gt;</span></code></pre>
+                </div>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <h4>1. Create Account</h4>
+                    <p>Sign up securely on our dashboard via Google, Email & Password or Passkeys.</p>
+                </div>
+                <div class="step">
+                    <h4>2. Copy Script</h4>
+                    <p>Grab your unique installation script tag pre-configured with your widget ID.</p>
+                </div>
+                <div class="step">
+                    <h4>3. Paste & Launch</h4>
+                    <p>Drop the script code inside the head or body of your HTML file. That's it!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info">
+            <div>
+                <div>
+                    <b>DESIGN & BRANDING</b>
+                    <h2>Fully Customizable Widget</h2>
+                    <h3>Match your website theme with widget. Change logo, texts, colors from your dashboard.</h3>
+                </div>
+                <div class="info-items">
+                    <div class="info-item">
+                        <h4>Branding & Header</h4>
+                        <p>
+                            Upload your widget logo, pick widget title color, and set the text shown when hovering on
+                            the widget or when the widget is opened. You can also pick the open/close button icon color.
+                        </p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Presence & Status</h4>
+                        <p>
+                            Pick the widget status color, and set the exact text shown when your support team is online
+                            or offline.
+                        </p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Widget & Chat Frame</h4>
+                        <p>
+                            Pick the widget background color, widget border color, chat background color, and date
+                            color.
+                        </p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Message Customization</h4>
+                        <p>
+                            Pick the background color, text color, and shadow color for both visitor and admin messages
+                            independently, alongside the chat time color.
+                        </p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Input & Send Button</h4>
+                        <p>
+                            Pick the input background color and input color. You can also pick the send button's
+                            background color, icon color, border color, and shadow color.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="widget">
+                <div class="widget">
+                    <div class="header">
+                        <div class="logo"></div>
+                        <div class="title">
+                            <p>Hello there 👋 Need help?</p>
+                            <span class="online">Online</span>
+                        </div>
+                        <button class="arrow">
+                            <div></div>
+                        </button>
+                    </div>
+                    <div class="body">
+                        <div class="messages">
+                            <div class="dates">
+                                <p class="date">8 Apr 2026</p>
+                                <div class="msg VISITOR">
+                                    <p>Hii</p>
+                                    <p>05:58 AM</p>
+                                </div>
+                                <div class="msg ADMIN">
+                                    <p>Hello, how can we help you?</p>
+                                    <p>06:52 AM</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form onsubmit="return false;">
+                            <textarea placeholder="Send us message..."></textarea>
+                            <button type="submit">
+                                <div></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <script>
+                    const widget = document.querySelector(".widget");
+                    const title = widget?.querySelector(".title p");
+
+                    const steps = [
+                        ["closed", 2500],
+                        ["hovering", 1700],
+                        ["opened", 5000],
+                        ["closing", 600],
+                        ["closed", 2500]
+                    ];
+
+                    (async () => {
+                        while (true) {
+                            for (const [state, ms] of steps) {
+                                widget.className = `widget ${state}`;
+                                title.textContent = state === "opened" ? "Support" : "Hello there 👋 Need help?";
+                                await new Promise(resolve => setTimeout(resolve, ms));
+                            }
+                        }
+                    })();
+                </script>
+            </div>
+        </div>
+
+        <div class="info">
+            <div>
+                <div>
+                    <b>LIVE ALERTS</b>
+                    <h2>Instant Notifications</h2>
+                    <h3>Get instant alerts when visitors message you, and send replies directly to their email.</h3>
+                </div>
+                <div class="info-items">
+                    <div class="info-item">
+                        <h4>Slack Alerts</h4>
+                        <p>
+                            Get notified in Slack when a visitor sends a message. Each alert includes their email,
+                            message, and a link to open the chat in your dashboard.
+                        </p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Discord Channel</h4>
+                        <p>
+                            Receive new visitor messages in your Discord channel. Alerts include the visitor's email,
+                            message, and a link to view the chat in your dashboard.
+                        </p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Telegram Pings</h4>
+                        <p>
+                            Get Telegram alerts for new visitor messages. Each notification shows the visitor's email,
+                            message, and a link to open the chat in your dashboard.
+                        </p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Web Push Notifications</h4>
+                        <p>
+                            Receive browser notifications when a visitor sends a message. Click the notification to open
+                            the chat directly from your dashboard.
+                        </p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Gmail Replies</h4>
+                        <p>
+                            Reply to visitors by email and automatically show the same reply in the live chat widget
+                            conversation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="hub">
+                <div class="hub-core">
+                    <div></div>
+                </div>
+                <div class="track"
+                    style="--w: 120px; --deg: -140deg; --dur: 2.3s; --del: 0.2s; --icon: var(--slack-icon); --size: 24px;">
+                    <div class="node">
+                        <div></div>
+                    </div>
+                </div>
+                <div class="track"
+                    style="--w: 110px; --deg: -75deg; --dur: 1.9s; --del: 0.7s; --icon: var(--discord-icon); --size: 22px;">
+                    <div class="node">
+                        <div></div>
+                    </div>
+                </div>
+                <div class="track"
+                    style="--w: 115px; --deg: -10deg; --dur: 2.6s; --del: 0s; --icon: var(--telegram-icon); --size: 24px;">
+                    <div class="node">
+                        <div></div>
+                    </div>
+                </div>
+                <div class="track"
+                    style="--w: 120px; --deg: 60deg; --dur: 2.1s; --del: 1.4s; --icon: var(--push-icon); --size: 20px;">
+                    <div class="node">
+                        <div></div>
+                    </div>
+                </div>
+                <div class="track"
+                    style="--w: 125px; --deg: 135deg; --dur: 2.8s; --del: 0.9s; --icon: var(--gmail-icon); --size: 18px;">
+                    <div class="node">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tool">
+            <div class="tool-header">
+                <b>WORKSPACE TOOLS</b>
+                <h2>Team, App & Extensions</h2>
+                <h3>Manage teams and handle customer conversations from app and browser extensions.</h3>
+            </div>
+            <div class="tool-items">
+                <div class="tool-item">
+                    <div class="tool-preview">
+                        <div class="team-card">
+                            <div class="meta">
+                                <b>John Doe</b>
+                                <span>johndoe@gmail.com</span>
+                            </div>
+                            <span class="badge">Owner</span>
+                        </div>
+                        <div class="team-card">
+                            <div class="meta">
+                                <b>Jane Doe</b>
+                                <span>janedoe@outlook.com</span>
+                            </div>
+                            <span class="badge">Team</span>
+                        </div>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Team Operations</h4>
+                        <p>Add, edit, or delete team members from your dashboard.</p>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-preview">
+                        <div class="app-logo"></div>
+                        <a href="https://dashboard.taphtml.com/?app=true" class="app-btn">Install to Device</a>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Progressive Web App</h4>
+                        <p>Desktop and mobile app installable directly from the browser.</p>
+                    </div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-preview">
+                        <div class="extension-card">
+                            <div class="browser-icon chrome"></div>
+                            <a href="https://chromewebstore.google.com/detail/igaicifkgdcchcdopefiebgdmkehbfbe"
+                                class="meta">
+                                <b>Chrome Extension</b>
+                                <span>Install from Chrome Web Store</span>
+                            </a>
+                        </div>
+                        <div class="extension-card">
+                            <div class="browser-icon firefox"></div>
+                            <a href="https://addons.mozilla.org/en-US/firefox/addon/taphtml/" class="meta">
+                                <b>Firefox Extension</b>
+                                <span>Install from Firefox Add-ons</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tool-info">
+                        <h4>Browser Extensions</h4>
+                        <p>Chrome and Firefox Add-ons to manage chats in the browser's sidebar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="trust">
+            <div>
+                <b>OPEN SOURCE & PRIVACY</b>
+                <h2>Privacy-First Framework</h2>
+                <h3>View our open-source code on GitHub and host your chat data safely with complete privacy.</h3>
+            </div>
+            <div class="trust-items">
+                <div class="trust-item">
+                    <div class="trust-info">
+                        <h4>MIT License & GitHub</h4>
+                        <p>
+                            Our complete code repository is entirely public. You can easily self-host entire application
+                            on your own local infrastructure.
+                        </p>
+                    </div>
+                    <div class="trust-preview license">
+                        <p><span>1</span>Permission is hereby granted, free of charge, to any person</p>
+                        <p><span>2</span>to deal in the Software without restriction, including without limitation</p>
+                        <p><span>3</span>The above copyright notice and this permission notice shall be included</p>
+                        <p><span>4</span>in all copies or substantial portions of the Software.</p>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-info">
+                        <h4>Privacy by Default</h4>
+                        <p>
+                            We do not track visitors or sell user metrics. All chat histories and media assets are
+                            safely stored in our VPS.
+                        </p>
+                    </div>
+                    <div class="trust-preview hosting">
+                        <div>
+                            <span>Primary Hosting</span>
+                            <p>IONOS VPS</p>
+                        </div>
+                        <div>
+                            <span>Global Delivery</span>
+                            <p>Cloudflare</p>
+                        </div>
+                        <div>
+                            <span>Tracking Cookies</span>
+                            <p>None Enabled</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-info">
+                        <h4>Zero Marketing Exploits</h4>
+                        <p>
+                            TapHTML acts strictly as a data processor. Your notification setups are exclusively utilized
+                            to pass functional chat updates.
+                        </p>
+                    </div>
+                    <div class="trust-preview marketing">
+                        <p>Strict Anti-Spam Guarantee</p>
+                        <p>We never read your connected Gmail inbox, nor do we ever use email channels for any spam.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-left">
+                <h2>Start chatting with your customers today.</h2>
+                <p>
+                    Fully open source, free, and completely self-hostable. No annoying advertisement, no marketing
+                    spam and no tracking cookies.
+                </p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-links">
+                    <h3>LINKS</h3>
+                    <a href="https://dashboard.taphtml.com">Dashboard</a>
+                    <a href="https://chromewebstore.google.com/detail/igaicifkgdcchcdopefiebgdmkehbfbe">Chrome
+                        Extension</a>
+                    <a href="https://addons.mozilla.org/en-US/firefox/addon/taphtml/">Firefox Extension</a>
+                    <a href="https://github.com/prodsaas/taphtml">GitHub Repository</a>
+                </div>
+                <div class="footer-links">
+                    <h3>COMPLIANCE</h3>
+                    <a href="sitemap.xml">Sitemap</a>
+                    <a href="policy/terms.html">Terms of Service</a>
+                    <a href="policy/privacy.html">Privacy Policy</a>
+                    <a href="mailto:taphtml@gmail.com">Contact Support</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TapHTML</p>
+            <p>Hosted in Berlin, Germany</p>
+        </div>
+    </footer>
+</body>
+
+</html>

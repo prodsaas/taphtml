@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Terms of Service - TapHTML</title>
+    <meta name="description" content="Read our rules and guidelines for using TapHTML.">
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href="https://taphtml.com/policy/terms.html" />
+
+    <meta property="og:title" content="Terms of Service - TapHTML">
+    <meta property="og:site_name" content="TapHTML">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://taphtml.com/policy/terms.html" />
+    <meta property="og:description" content="Read our rules and guidelines for using TapHTML.">
+    <meta property="og:image" content="https://taphtml.com/images/banner.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Terms of Service - TapHTML" />
+    <meta name="twitter:description" content="Read our rules and guidelines for using TapHTML." />
+    <meta name="twitter:image" content="https://taphtml.com/images/banner.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/policy.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="../index.html" class="logo">
+                <div></div>
+                <p>Tap<span>HTML</span></p>
+            </a>
+            <div class="nav-links">
+                <a href="https://github.com/prodsaas/taphtml" target="_blank" rel="noopener noreferrer">
+                    <div class="github"></div>
+                    <span id="star"></span>
+                </a>
+                <a href="https://dashboard.taphtml.com">Dashboard</a>
+            </div>
+        </nav>
+    </header>
+    <script>
+        window.onscroll = () => document.body.classList.toggle('scrolled', window.scrollY > 20);
+
+        (async () => {
+            const el = document.getElementById('star');
+            const stored = sessionStorage.getItem('stars');
+
+            if (stored) el.textContent = stored;
+            else try {
+                const { stargazers_count } = await (await fetch("https://api.github.com/repos/prodsaas/taphtml")).json();
+                if (stargazers_count) {
+                    el.textContent = stargazers_count;
+                    sessionStorage.setItem('stars', stargazers_count);
+                }
+            } catch { }
+        })();
+    </script>
+
+    <main class="policy">
+        <h1>Terms of Service</h1>
+        <p><b>Last Updated:</b> 30 May 2026</p>
+
+        <p>
+            Welcome to TapHTML (that's us). By accessing our dashboard, signing up for an account, installing our
+            browser extensions, or embedding our chat widget script on your website, you agree to be bound by these
+            Terms of Service. If you do not agree to these terms, please do not use our service.
+        </p>
+
+        <h2>1. Service Description</h2>
+        <p>
+            TapHTML is a free, open-source live chat platform. Our service includes a dashboard, browser extensions for
+            <a href="https://chromewebstore.google.com/detail/igaicifkgdcchcdopefiebgdmkehbfbe" target="_blank"
+                rel="noopener noreferrer">Chrome</a> and <a
+                href="https://addons.mozilla.org/en-US/firefox/addon/taphtml/" target="_blank"
+                rel="noopener noreferrer">Firefox</a>, and the core chat widget. The source code is publicly available
+            on GitHub at <a href="https://github.com/prodsaas/taphtml" target="_blank"
+                rel="noopener noreferrer">https://github.com/prodsaas/taphtml</a>. Our infrastructure is hosted in
+            Berlin, Germany, utilizing Cloudflare for global delivery. Our service also includes optional notification
+            integrations (Web Push, Slack, Discord, and Telegram) and email communication features (Gmail) managed via
+            the dashboard.
+        </p>
+
+        <h2>2.1 Account Registration & Authentication</h2>
+        <p>
+            To use the service, you must register via our dashboard using Google OAuth, Passkeys, or name, email
+            and password. Upon authentication, we issue secure tokens to manage your session across the dashboard and
+            browser extensions. You are responsible for maintaining the security of your authentication methods
+            (including passwords and physical security keys) and for all activities that occur under your account.
+        </p>
+
+        <h2>2.2 Third-Party Integrations</h2>
+        <p>
+            If you enable notification alerts via Slack, Discord, or Telegram, or connect your Gmail account to send
+            replies, data will be transmitted through these third-party platforms. Their respective terms and privacy
+            policies will also apply to those transmissions.
+        </p>
+
+        <h2>2.3 Anti-Spam Commitment</h2>
+        <p>
+            TapHTML is committed to a spam-free experience. We will never use your contact information (Email) or
+            enabled communication channels (Web Push, Slack, Discord, Telegram, or Gmail) to send marketing materials,
+            advertisements, or any form of unsolicited spam. Communications from us are strictly limited to functional
+            service alerts, essential account updates, or critical security notifications.
+        </p>
+
+        <h2>3. Acceptable Use</h2>
+        <h3><b>You agree not to:</b></h3>
+        <ul>
+            <li>
+                Use the widget, browser extensions, or Gmail integration to transmit spam, malware, or malicious code.
+            </li>
+            <li>
+                Use the service to collect sensitive personal information (such as credit card numbers or medical data)
+                from your visitors without proper authorization and security measures.
+            </li>
+            <li>
+                Upload any media assets (such as custom widget logos) that violate copyright laws, contain explicit
+                content, or infringe upon third-party intellectual property rights.
+            </li>
+        </ul>
+
+        <h2>4. Data Processing and Responsibilities</h2>
+        <p>
+            You (the website owner) are the Data Controller of the information collected through the chat widget on your
+            website. TapHTML acts solely as a Data Processor. Regulations regarding the collection and use of personal
+            data vary by country and region, including but not limited to GDPR in the EU, CCPA in the USA, and similar
+            laws worldwide. It is your responsibility to ensure that your own website has a valid Privacy Policy that
+            informs your visitors that you use a third-party service (TapHTML) to process chat communications and
+            visitor metrics in compliance with your local regulations.
+        </p>
+
+        <h2>5. Open Source and "As Is" Disclaimer</h2>
+        <p>
+            TapHTML is an open-source project provided on an "AS IS" and "AS AVAILABLE" basis. While we strive for
+            reliability, we make no warranties, express or implied, regarding the uptime, functionality, or error-free
+            operation of the dashboard or widget. You acknowledge that the service relies on third-party infrastructure
+            providers (including hosting in the EU and global CDN services) and we are not liable for regional outages
+            caused by these providers.
+        </p>
+
+        <h2>6. Limitation of Liability</h2>
+        <p>
+            To the maximum extent permitted by law, TapHTML, its contributors and its maintainers shall not be liable
+            for any direct, indirect, incidental, special, or consequential damages resulting from the use or inability
+            to use the service, including but not limited to lost profits, data loss, or business interruption, even if
+            advised of the possibility of such damages.
+        </p>
+
+        <h2>7. Changes to Terms</h2>
+        <p>
+            Because our codebase and service evolve, we reserve the right to modify these Terms at any time. Continued
+            use of our services after changes are posted constitutes your acceptance of the new Terms.
+        </p>
+
+        <nav>
+            <a href="../index.html"><span>Back to</span><span>Home</span></a>
+            <a href="privacy.html"><span>Next Policy</span><span>Privacy Policy</span></a>
+        </nav>
+    </main>
+</body>
+
+</html>

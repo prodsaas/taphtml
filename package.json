@@ -1,0 +1,9 @@
+{
+    "scripts": {
+        "install": "npm --prefix api install && npm --prefix dashboard install && npm --prefix extension install && npm --prefix widget install",
+        "api": "npm --prefix api run dev",
+        "dashboard": "npm --prefix dashboard run dev",
+        "extension": "npm --prefix extension run dev",
+        "widget": "npm --prefix widget run dev"
+    }
+}

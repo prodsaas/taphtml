@@ -1,0 +1,9 @@
+# build dir
+dist
+
+# extension build dir
+firefox
+chrome
+
+node_modules
+.env
