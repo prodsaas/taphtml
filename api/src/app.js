@@ -26,13 +26,13 @@ app.use((req, res, next) => {
 });
 app.use(express.static(path.join(__dirname, "../public")));
 
-app.get("/", (req, res) => res.status(200).send("OK"));
+app.get("/", (req, res) => res.status(200).send("OK!"));
 app.use("/auth", require("./route/authRoute"));
 app.use("/chat", require("./route/chatRoute"));
 app.use("/dashboard", require("./route/dashboardRoute"));
 app.use("/setting", require("./route/settingRoute"));
 app.use("/team", require("./route/teamRoute"));
 app.use("/widget", require("./route/widgetRoute"));
-app.all(/.*/, (req, res) => res.status(404).send("Not found"));
+app.all(/.*/, (req, res) => res.status(404).send("Not found!"));
 
 module.exports = app;

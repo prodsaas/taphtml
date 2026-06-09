@@ -42,7 +42,7 @@ jobs:
       - name: Deploy api
         if: steps.changes.outputs.api == 'true'
         run: |
-          rsync -avz --delete \
+          rsync -rvz --delete \
             --exclude=".env" \
             --exclude="node_modules" \
             --exclude="public/uploads/" \
@@ -92,14 +92,14 @@ jobs:
       - name: Deploy dashboard
         if: steps.changes.outputs.dashboard == 'true'
         run: |
-          rsync -avz --delete \
+          rsync -rvz --delete \
             dashboard/dist/ \
             ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/taphtml/dashboard/
 
       - name: Deploy landing
         if: steps.changes.outputs.landing == 'true'
         run: |
-          rsync -avz --delete \
+          rsync -rvz --delete \
             landing/ \
             ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/taphtml/landing/
 
@@ -124,6 +124,6 @@ jobs:
       - name: Deploy widget
         if: steps.changes.outputs.widget == 'true'
         run: |
-          rsync -avz --delete \
+          rsync -rvz --delete \
             widget/dist/ \
             ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/taphtml/widget/
