@@ -45,10 +45,10 @@ pm2 -v
 ## 3. Folder Structure
 
 ```bash
-mkdir -p /root/taphtml/api
-mkdir -p /var/www/taphtml/dashboard
-mkdir -p /var/www/taphtml/landing
-mkdir -p /var/www/taphtml/widget
+mkdir -p ~/taphtml/api
+mkdir -p ~/taphtml/dashboard
+mkdir -p ~/taphtml/landing
+mkdir -p ~/taphtml/widget
 ```
 
 ## 4. GitHub Actions (SSH Setup)
@@ -78,11 +78,15 @@ cat ~/.ssh/id_ed25519
 
 Add the following secrets:
 
-| Name        | Value          |
-| ----------- | -------------- |
-| VPS_SSH_KEY | Private Key    |
-| VPS_HOST    | VPS IP Address |
-| VPS_USER    | VPS User       |
+| Name                       | Value                            |
+| -------------------------- | -------------------------------- |
+| VPS_SSH_KEY                | Private Key                      |
+| VPS_HOST                   | VPS IP Address                   |
+| VPS_USER                   | VPS User                         |
+| VITE_SERVER_URL            | Server URL                       |
+| VITE_WIDGET_URL            | Widget URL                       |
+| VITE_VAPID_PUBLIC_KEY      | Vapid Public Key (Optional)      |
+| VITE_TELEGRAM_BOT_USERNAME | Telegram Bot Username (Optional) |
 
 ## 5. Nginx
 
@@ -110,7 +114,7 @@ nano <YOUR_VPS_IP_ADDRESS>.conf
 ```nginx
 server {
     listen 80;
-    root /var/www/taphtml/landing;
+    root /home/<YOUR_VPS_USER>/taphtml/landing;
     index index.html;
 
     location / {
@@ -136,7 +140,7 @@ server {
     listen 443 ssl;
     server_name <YOUR_DOMAIN> www.<YOUR_DOMAIN>;
 
-    root /var/www/taphtml/landing;
+    root /home/<YOUR_VPS_USER>/taphtml/landing;
     index index.html;
 
     location / {
@@ -190,7 +194,7 @@ server {
     listen 443 ssl;
     server_name dashboard.<YOUR_DOMAIN>;
 
-    root /var/www/taphtml/dashboard;
+    root /home/<YOUR_VPS_USER>/taphtml/dashboard;
     index index.html;
 
     location / {
@@ -217,7 +221,7 @@ server {
     listen 443 ssl;
     server_name widget.<YOUR_DOMAIN>;
 
-    root /var/www/taphtml/widget;
+    root /home/<YOUR_VPS_USER>/taphtml/widget;
 
     add_header Access-Control-Allow-Origin * always;
     add_header Access-Control-Allow-Methods "GET, OPTIONS";
@@ -257,7 +261,7 @@ systemctl reload nginx
 ## 6. API Environment
 
 ```bash
-cd /root/taphtml/api
+cd taphtml/api
 nano .env
 ```
 

@@ -47,7 +47,7 @@ jobs:
             --exclude="node_modules" \
             --exclude="public/uploads/" \
             api/ \
-            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/root/taphtml/api/
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/taphtml/api/
 
       - name: Install api dependencies & restart PM2
         if: steps.changes.outputs.api == 'true'
@@ -56,7 +56,7 @@ jobs:
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-            cd /root/taphtml/api
+            cd ~/taphtml/api
             npm install --omit=dev
 
             if pm2 describe taphtml > /dev/null 2>&1; then
@@ -94,14 +94,14 @@ jobs:
         run: |
           rsync -avz --delete \
             dashboard/dist/ \
-            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/taphtml/dashboard/
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/taphtml/dashboard/
 
       - name: Deploy landing
         if: steps.changes.outputs.landing == 'true'
         run: |
           rsync -avz --delete \
             landing/ \
-            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/taphtml/landing/
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/taphtml/landing/
 
       - name: Setup Node.js (widget)
         if: steps.changes.outputs.widget == 'true'
@@ -126,4 +126,4 @@ jobs:
         run: |
           rsync -avz --delete \
             widget/dist/ \
-            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/taphtml/widget/
+            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/taphtml/widget/

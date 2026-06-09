@@ -40,10 +40,6 @@ input[type=number] {
     appearance: textfield;
 }
 
-main {
-    width: 100%;
-}
-
 .logo div {
     height: 25px;
     aspect-ratio: 110 / 103;

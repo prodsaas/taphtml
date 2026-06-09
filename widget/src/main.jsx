@@ -39,7 +39,7 @@ if (!window.__taphtml) {
   };
 
   const runWhenIdle = () => {
-    if ("requestIdleCallback" in window) requestIdleCallback(() => initWidget(), { timeout: 2000 });
+    if ("requestIdleCallback" in window) requestIdleCallback(() => initWidget(), { timeout: 1500 });
     else setTimeout(initWidget, 100);
   };
 
