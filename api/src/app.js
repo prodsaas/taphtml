@@ -33,6 +33,6 @@ app.use("/dashboard", require("./route/dashboardRoute"));
 app.use("/setting", require("./route/settingRoute"));
 app.use("/team", require("./route/teamRoute"));
 app.use("/widget", require("./route/widgetRoute"));
-app.all(/.*/, (req, res) => res.status(404).send("Not found!"));
+app.all(/.*/, (req, res) => res.status(404).send("Not found"));
 
 module.exports = app;
