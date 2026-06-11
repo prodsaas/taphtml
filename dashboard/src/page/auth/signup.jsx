@@ -143,7 +143,7 @@ const Signup = () => {
                     <div className="auth-extra">
                         <p>By clicking "Signup", you agree to our</p>
                         <a
-                            href="https://taphtml.com/terms-of-service.html"
+                            href="https://taphtml.com/policy/terms.html"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -151,7 +151,7 @@ const Signup = () => {
                         </a>
                         <p>and our</p>
                         <a
-                            href="https://taphtml.com/privacy-policy.html"
+                            href="https://taphtml.com/policy/privacy.html"
                             target="_blank"
                             rel="noopener noreferrer"
                         >

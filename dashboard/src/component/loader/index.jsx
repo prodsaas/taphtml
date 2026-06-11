@@ -12,10 +12,6 @@ export const Loader = () => (
   </div>
 )
 
-export const Progress = () => (
-  <div className="progress"><div /></div>
-)
-
 export const Spinner = () => (
   <div className="spinner" />
 )
