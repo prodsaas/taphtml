@@ -1,0 +1,28 @@
+{
+    "name": "@prodsaas/taphtml",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "unpkg": "dist/widget.js",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js"
+        },
+        "./widget": "./dist/widget.js"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "vite build"
+    },
+    "dependencies": {
+        "preact": "^10.29.0",
+        "socket.io-client": "^4.8.3"
+    },
+    "devDependencies": {
+        "@preact/preset-vite": "^2.10.4",
+        "vite": "^8.0.1"
+    }
+}

@@ -120,6 +120,7 @@ export default function Chat({ widgetID }) {
 
     socket.on("connect_error", (err) => {
       setWidget(null);
+      console.error(err?.message || err);
     });
 
     return () => {
