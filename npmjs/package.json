@@ -1,7 +1,7 @@
 {
     "name": "@prodsaas/taphtml",
-    "version": "1.0.1",
-    "description": "An embeddable live chat widget for React/Next.js applications.",
+    "version": "1.0.2",
+    "description": "Embeddable live chat widget. Use via a single HTML script tag or as a React/Next.js component.",
     "type": "module",
     "main": "dist/index.js",
     "module": "dist/index.js",
