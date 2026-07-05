@@ -1,10 +1,12 @@
 {
     "name": "@prodsaas/taphtml",
-    "version": "1.0.0",
+    "version": "1.0.1",
+    "description": "An embeddable live chat widget for React/Next.js applications.",
     "type": "module",
     "main": "dist/index.js",
     "module": "dist/index.js",
     "unpkg": "dist/widget.js",
+    "types": "dist/index.d.ts",
     "exports": {
         ".": {
             "import": "./dist/index.js"
@@ -15,7 +17,7 @@
         "dist"
     ],
     "scripts": {
-        "build": "vite build"
+        "build": "vite build && tsc"
     },
     "dependencies": {
         "preact": "^10.29.0",
@@ -23,6 +25,7 @@
     },
     "devDependencies": {
         "@preact/preset-vite": "^2.10.4",
+        "typescript": "^6.0.3",
         "vite": "^8.0.1"
     }
 }
