@@ -14,69 +14,78 @@ module.exports = async function socket(server) {
         io.engine.use(cookieParser());
 
         io.use(async (socket, next) => {
-            const { role } = socket.handshake.query;
+            try {
+                const { role } = socket.handshake.query;
 
-            if (role === "VISITOR") {
-                const { widgetID, visitorID, timezone } = socket.handshake.query;
+                if (role === "VISITOR") {
+                    const { widgetID, visitorID, timezone } = socket.handshake.query;
 
-                if (!widgetID) {
-                    return next(new Error("Invalid or missing widgetID"));
+                    if (!widgetID || !isValidUUID(widgetID)) {
+                        return next(new Error("Incorrect widgetID"));
+                    }
+
+                    const countries = TIMEZONES[timezone];
+                    let country = null;
+                    if (Array.isArray(countries) && countries.length > 0) {
+                        country = countries[0];
+                    }
+
+                    const { rows, rowCount } = await pool.query(
+                        "SELECT * FROM widgets WHERE id = $1 LIMIT 1",
+                        [widgetID]
+                    );
+
+                    if (!rowCount) {
+                        return next(new Error("Incorrect widgetID"));
+                    }
+
+                    socket.role = role;
+                    socket.widget = rows[0];
+                    socket.visitor = { id: visitorID || null, email: null, country };
+                    return next();
                 }
+                else if (role === "ADMIN") {
+                    const accessToken = socket.request.cookies?.accessToken;
+                    if (!accessToken) {
+                        return next(new Error("Missing access token"));
+                    }
 
-                const countries = TIMEZONES[timezone];
-                let country = null;
-                if (Array.isArray(countries) && countries.length > 0) {
-                    country = countries[0];
+                    const decoded = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET);
+
+                    const adminID = decoded.id;
+
+                    if (!isValidUUID(adminID)) {
+                        return next(new Error("Unauthorized"));
+                    }
+
+                    const { rows, rowCount } = await pool.query(
+                        `SELECT 
+                            a.name, 
+                            a.is_active, 
+                            to_jsonb(w.*) AS widget_data
+                        FROM admins a
+                        INNER JOIN widgets w ON a.widget_id = w.id
+                        WHERE a.id = $1 LIMIT 1`,
+                        [adminID]
+                    );
+
+                    const admin = rows[0];
+
+                    if (!rowCount || !admin.is_active) {
+                        return next(new Error("Unauthorized"));
+                    }
+
+                    socket.role = role;
+                    socket.widget = admin.widget_data;
+                    socket.admin = { id: adminID, name: admin.name };
+                    return next();
                 }
-
-                const { rows, rowCount } = await pool.query(
-                    "SELECT * FROM widgets WHERE id = $1 LIMIT 1",
-                    [widgetID]
-                );
-
-                if (!rowCount) {
-                    return next(new Error("Incorrect widgetID"));
+                else {
+                    return next(new Error("Invalid role"));
                 }
-
-                socket.role = role;
-                socket.widget = rows[0];
-                socket.visitor = { id: visitorID || null, email: null, country };
-                return next();
             }
-            else if (role === "ADMIN") {
-                const accessToken = socket.request.cookies?.accessToken;
-                if (!accessToken) {
-                    return next(new Error("Missing access token"));
-                }
-
-                const decoded = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET);
-
-                const adminID = decoded.id;
-
-                const { rows, rowCount } = await pool.query(
-                    `SELECT 
-                        a.name, 
-                        a.is_active, 
-                        to_jsonb(w.*) AS widget_data
-                    FROM admins a
-                    INNER JOIN widgets w ON a.widget_id = w.id
-                    WHERE a.id = $1 LIMIT 1`,
-                    [adminID]
-                );
-
-                const admin = rows[0];
-
-                if (!rowCount || !admin.is_active) {
-                    return next(new Error("Unauthorized"));
-                }
-
-                socket.role = role;
-                socket.widget = admin.widget_data;
-                socket.admin = { id: adminID, name: admin.name };
-                return next();
-            }
-            else {
-                return next(new Error("Invalid role"));
+            catch {
+                return next(new Error("Authentication failed"));
             }
         });
 
@@ -165,7 +174,8 @@ async function handleVisitorSocket(io, socket) {
 
     socket.on("visitor:init", async () => {
         try {
-            if (!socket.visitor.id) {
+            if (!socket.visitor.id || !isValidUUID(socket.visitor.id)) {
+                socket.visitor.id = null;
                 return socket.emit("visitor:init:response", {
                     visitorID: null,
                     widget,
@@ -276,6 +286,8 @@ async function handleVisitorSocket(io, socket) {
         try {
             if (!socket.visitor.id || !socket.visitor.email || !chatID || !message) return;
 
+            if (!isValidUUID(chatID)) return;
+
             const room = io.sockets.adapter.rooms.get(`chat-${chatID}`);
             const isActiveChat = room && room.size > 0;
 
@@ -354,6 +366,13 @@ async function handleAdminSocket(io, socket) {
         try {
             if (!chatID) return;
 
+            if (!isValidUUID(chatID)) {
+                return socket.emit("admin:chat:response", {
+                    chat: false,
+                    messages: []
+                });
+            }
+
             const { rowCount } = await pool.query(
                 "SELECT 1 FROM chats WHERE id = $1 AND widget_id = $2 LIMIT 1",
                 [chatID, widgetID]
@@ -407,6 +426,8 @@ async function handleAdminSocket(io, socket) {
         try {
             if (!chatID || !message) return;
 
+            if (!isValidUUID(chatID)) return;
+
             const { rowCount } = await pool.query(
                 "SELECT visitor_id FROM chats WHERE id = $1 AND widget_id = $2 LIMIT 1",
                 [chatID, widgetID]
@@ -436,3 +457,9 @@ async function handleAdminSocket(io, socket) {
         catch (err) { console.error(err) }
     });
 }
+
+const isValidUUID = (id) => {
+    if (!id || typeof id !== "string") return false;
+    const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+    return uuidRegex.test(id);
+};
