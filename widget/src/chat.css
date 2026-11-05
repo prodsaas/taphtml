@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -7,26 +8,26 @@
 
 :host {
     all: initial;
-    --widget-bg: #ffffff;
-    --widget-border: #e2e8f0;
-    --title-color: #29292f;
-    --status-color: #40566d;
-    --arrow-color: #6b7280;
-    --chat-bg: #f5f5f7;
-    --date-color: #40566d;
-    --visitor-bg: #ffffff;
-    --visitor-color: #29292f;
-    --visitor-shadow: #00000029;
-    --admin-bg: #182346;
-    --admin-color: #ffffff;
-    --admin-shadow: #00000029;
-    --time-color: #40566d;
-    --input-bg: #ffffff;
-    --input-color: #000000;
-    --send-bg: #ffffff;
-    --send-color: #182346;
-    --send-border: #dadce0;
-    --send-shadow: #00000029;
+    --widget-bg: #F7F4EE;
+    --widget-border: #E5DED3;
+    --title-color: #214D32;
+    --status-color: #2F6B45;
+    --arrow-color: #214D32;
+    --chat-bg: #F7F4EE;
+    --date-color: #8A6A4A;
+    --visitor-bg: #2F6B45;
+    --visitor-color: #FFFFFF;
+    --visitor-shadow: #E5DED3;
+    --admin-bg: #FFFFFF;
+    --admin-color: #214D32;
+    --admin-shadow: #E5DED3;
+    --time-color: #8A6A4A;
+    --input-bg: #FFFFFF;
+    --input-color: #214D32;
+    --send-bg: #214D32;
+    --send-color: #FFFFFF;
+    --send-border: #214D32;
+    --send-shadow: #E5DED3;
     --logo-icon: url("data:image/svg+xml,<svg width='110' height='103' viewBox='0 0 110 103' xmlns='http://www.w3.org/2000/svg' fill='none'><path d='M45 85C26.144 85 16.7155 85 10.858 79.142C5 73.2845 5 63.856 5 45C5 26.1438 5 16.7157 10.858 10.8578C16.7155 5 26.144 5 45 5H65C83.8562 5 93.2842 5 99.1421 10.8578C105 16.7157 105 26.1438 105 45C105 63.856 105 73.2845 99.1421 79.142C95.8762 82.408 91.5005 83.853 85 84.4925' stroke='%23A435F0' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/><path d='M45 85C51.1825 85 57.989 87.496 64.207 90.725C74.194 95.9105 79.1875 98.5035 81.6482 96.8515C84.109 95.199 83.6432 90.0755 82.7117 79.8285L82.5 77.5' stroke='%23A435F0' stroke-width='10' stroke-linecap='round'/></svg>");
     --arrow-icon: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><polyline points='5 21 10 12 5 3' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'/><polyline points='14 21 19 12 14 3' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'/></svg>");
     --send-icon: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path fill='black' fill-rule='evenodd' clip-rule='evenodd' d='M18.61 2.645c1.585-.455 3.047 1.007 2.592 2.592l-4.024 14.005c-.67 2.334-3.788 2.778-5.068.72l-1.776-2.85a2 2 0 0 1 .287-2.474l3.79-3.79a1 1 0 0 0 .002-1.414A1 1 0 0 0 13 9.436l-3.79 3.79a2 2 0 0 1-2.473.287l-2.852-1.775c-2.057-1.281-1.613-4.399.721-5.07z'/></svg>");
@@ -34,6 +35,7 @@
 
 .widget {
     position: fixed;
+    z-index: 2147483647;
     bottom: 10px;
     right: 10px;
     height: 60px;
