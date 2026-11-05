@@ -185,14 +185,14 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    opacity: 0;
-    transition: opacity 0.2s ease;
+    opacity: 1;
+    transition: none;
     overflow: hidden;
 }
 
 .opened .body {
     opacity: 1;
-    transition: opacity 0.4s ease 0.3s;
+    transition: none;
 }
 
 .messages {
